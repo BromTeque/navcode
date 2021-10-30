@@ -1,48 +1,29 @@
 import kotlin.math.ceil
 
-fun calculateUnemploymentBenefits(income: List<Double>): Double {
+fun calculateUnemploymentBenefits(income: List<Double>) {
     // Variables
     val grunnbelop: Int = 106399 //Grunnbeløp per year
     var dagpengegrunnlag: Double = 0.0
     var dagsats: Int = 0
 
-
-    dagpengegrunnlag = grunnbelop.toDouble()
-    for (y in income) {
-        dagpengegrunnlag += income[income.indexOf(y)]
+    // Eligibility Calculation
+    if ((income.sum() > 3 * grunnbelop) || (income[0] > 1.5 * grunnbelop)) {
+        dagpengegrunnlag = maxOf(income[0], (income.slice(0..2).sum())/3)                                     // Dagpengegrunnlag Formula
+        if (dagpengegrunnlag > 6 * grunnbelop) {
+            dagpengegrunnlag = 6 * grunnbelop.toDouble()
+        }
+        dagsats = ceil(dagpengegrunnlag / 260).toInt()                                                               // Dagsats Formula
+        println("Eligible for dagpanger with a rate of $dagsats")
+        return
+    } else {
+        println("Not eligible for dagpenger.")
+        return
     }
-    if (income.sum() > 3 * grunnbelop) {
-        println("dagpenger!")
-        println(income.sum())
-    } else if (income[0] > 1.5 * grunnbelop) {
-        println("dagpenger!")
-        println(income[0])
-    }
-    if (income.sum() > 6 * grunnbelop) {
-        println("for mye penger!")
-    }
-    print("Income last year: ")
-    println(income[0])
-    print("Average of income last 3 years: ")
-    println((income.slice(0..2).sum())/3)
-    if (dagpengegrunnlag > 6 * grunnbelop) {
-        println("benefits too big")
-        dagpengegrunnlag = 6 * grunnbelop.toDouble()
-    }
-
-    dagsats = ceil(dagpengegrunnlag / 260).toInt()
-    print("dagsats: ")
-    println(dagsats)
-
-
-    return dagpengegrunnlag
 }
 
 fun main() {
-    println("main")
-    val result = calculateUnemploymentBenefits(listOf(500000.0, 450000.0, 400000.0))
-    println(result)
+    val exampleResult = calculateUnemploymentBenefits(listOf(500000.0, 450000.0, 400000.0))
+    val above6GResult = calculateUnemploymentBenefits(listOf(800000.0, 750000.0, 700000.0))
+    val below3GResult = calculateUnemploymentBenefits(listOf(100000.0, 100000.0, 100000.0))
+    val below1p5GResult = calculateUnemploymentBenefits(listOf(111000.0, 0.0, 0.0))
 }
-
-//ASSUMPTIONS:
-// Income is ALWAYS given least year, year before, year before...
