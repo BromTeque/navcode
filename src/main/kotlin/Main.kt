@@ -6,7 +6,7 @@ fun calculateUnemploymentBenefits(income: List<Double>) {
 
     // Eligibility Calculation
     if ((income.sum() > 3 * grunnbelop) || (income[0] > 1.5 * grunnbelop)) {
-        // Dagpenger Formula and 6G check
+        // Dagpenger Formula and over 6G check
         var dagpengegrunnlag = maxOf(income[0], (income.slice(0..2).sum())/3)
         if (dagpengegrunnlag > 6 * grunnbelop) {
             dagpengegrunnlag = 6 * grunnbelop.toDouble()
@@ -25,9 +25,9 @@ fun main() {
     print("Eksempel: ")
     calculateUnemploymentBenefits(listOf(500000.0, 450000.0, 400000.0))
     print("Over 6G: ")
-    calculateUnemploymentBenefits(listOf(800000.0, 750000.0, 700000.0))
+    calculateUnemploymentBenefits(listOf(800000.0, 770000.0, 730000.0))
     print("Under 3G: ")
-    calculateUnemploymentBenefits(listOf(100000.0, 100000.0, 100000.0))
+    calculateUnemploymentBenefits(listOf(100000.0, 90000.0, 110000.0))
     print("Under 1.5G: ")
-    calculateUnemploymentBenefits(listOf(111000.0, 0.0, 0.0))
+    calculateUnemploymentBenefits(listOf(111000.0, 0.0, 15000.0))
 }
