@@ -6,11 +6,11 @@ fun calculateUnemploymentBenefits(income: List<Double>) {
 
     // Eligibility Calculation
     if ((income.sum() > 3 * grunnbelop) || (income[0] > 1.5 * grunnbelop)) {
-        var dagpengegrunnlag = maxOf(income[0], (income.slice(0..2).sum())/3)                                     // Dagpengegrunnlag Formula
+        var dagpengegrunnlag = maxOf(income[0], (income.slice(0..2).sum())/3)                                 // Dagpengegrunnlag Formula
         if (dagpengegrunnlag > 6 * grunnbelop) {
             dagpengegrunnlag = 6 * grunnbelop.toDouble()
         }
-        val dagsats = ceil(dagpengegrunnlag / 260).toInt()                                                               // Dagsats Formula
+        val dagsats = ceil(dagpengegrunnlag / 260).toInt()                                                           // Dagsats Formula
         println("Eligible for dagpenger with a rate of $dagsats")
         return
     } else {
