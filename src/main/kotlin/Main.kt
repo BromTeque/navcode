@@ -20,8 +20,8 @@ fun calculateUnemploymentBenefits(income: List<Double>) {
 }
 
 fun main() {
-    calculateUnemploymentBenefits(listOf(500000.0, 450000.0, 400000.0))
-    calculateUnemploymentBenefits(listOf(800000.0, 750000.0, 700000.0))
-    calculateUnemploymentBenefits(listOf(100000.0, 100000.0, 100000.0))
-    calculateUnemploymentBenefits(listOf(111000.0, 0.0, 0.0))
+    calculateUnemploymentBenefits(listOf(500000.0, 450000.0, 400000.0))                                                 // Example
+    calculateUnemploymentBenefits(listOf(800000.0, 750000.0, 700000.0))                                                 // Above 6G
+    calculateUnemploymentBenefits(listOf(100000.0, 100000.0, 100000.0))                                                 // Below 3G
+    calculateUnemploymentBenefits(listOf(111000.0, 0.0, 0.0))                                                           // Below 1.5G
 }
