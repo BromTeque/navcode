@@ -2,16 +2,16 @@ import kotlin.math.ceil
 
 fun calculateUnemploymentBenefits(income: List<Double>) {
     // Variables
-    val grunnbelop = 104716 //Grunnbeløp per year
+    val grunnbelop = 104716 // Gjennomsnitt per år (2021)
 
-    // Eligibility Calculation
+    // Eligibility calculation
     if ((income.sum() > 3 * grunnbelop) || (income[0] > 1.5 * grunnbelop)) {
-        // Dagpenger Formula and over 6G check
+        // Dagpenger formula and over 6G check
         var dagpengegrunnlag = maxOf(income[0], (income.slice(0..2).sum())/3)
         if (dagpengegrunnlag > 6 * grunnbelop) {
             dagpengegrunnlag = 6 * grunnbelop.toDouble()
         }
-        // Dagsats Formula
+        // Dagsats formula
         val dagsats = ceil(dagpengegrunnlag / 260).toInt()
         println("Kvalifisert for dagpenger med en dagsats på $dagsats kr")
         return
